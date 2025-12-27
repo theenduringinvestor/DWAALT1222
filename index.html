@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Anniversary</title>
+
+    <!-- Romantic script font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff2f92, #ff9ad5);
+        color: #fff;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1200px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* floating hearts */
+      .heart {
+        position: fixed;
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.8);
+        opacity: 0;
+        pointer-events: none;
+        animation: float 10s linear infinite;
+        filter: blur(1px);
+      }
+
+      .h1 {
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .h2 {
+        left: 25%;
+        animation-delay: 2s;
+      }
+      .h3 {
+        left: 45%;
+        animation-delay: 4s;
+      }
+      .h4 {
+        left: 65%;
+        animation-delay: 1s;
+      }
+      .h5 {
+        left: 80%;
+        animation-delay: 3s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) scale(0.8);
+          opacity: 0;
+        }
+        15% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-20vh) scale(1.3);
+          opacity: 0;
+        }
+      }
+
+      .card {
+        width: 90%;
+        max-width: 650px;
+        padding: 120px 24px 80px;
+        text-align: center;
+        border-radius: 18px;
+        background: rgba(255, 105, 180, 0.25);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        transform-origin: left center;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+
+      /* top nav bar */
+      .card-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 72px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 47, 146, 0.8),
+          rgba(255, 154, 213, 0.8)
+        );
+        box-shadow: 0 6px 25px rgba(255, 50, 140, 0.55);
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-btn {
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.22);
+        color: #ffffff;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          background 0.15s ease;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      h1 {
+        font-family: "Great Vibes", cursive;
+        font-size: 3.2rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        opacity: 0.95;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: translateX(-50%) scale(1);
+        }
+        30% {
+          transform: translateX(-50%) scale(1.08);
+        }
+        60% {
+          transform: translateX(-50%) scale(0.98);
+        }
+        100% {
+          transform: translateX(-50%) scale(1);
+        }
+      }
+
+      .open-btn {
+        position: absolute;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 28px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        background: #fff6f6;
+        color: #222;
+        box-shadow: 0 0 18px rgba(255, 255, 255, 0.8);
+        animation: heartbeat 1.6s ease-in-out infinite;
+      }
+
+      .open-btn::after {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        border-radius: 999px;
+        box-shadow: 0 0 22px rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+      }
+
+      .card.turn {
+        animation: turn 1s forwards ease-in-out;
+      }
+
+      @keyframes turn {
+        0% {
+          transform: rotateY(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: rotateY(-90deg);
+          opacity: 0;
+        }
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 6px;
+        width: 100%;
+        text-align: center;
+        font-size: 0.75rem;
+        opacity: 0.85;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- hearts -->
+    <div class="heart h1">♥</div>
+    <div class="heart h2">♥</div>
+    <div class="heart h3">♥</div>
+    <div class="heart h4">♥</div>
+    <div class="heart h5">♥</div>
+
+    <div class="card" id="cover">
+      <!-- navigation -->
+      <header class="card-nav">
+        <div class="nav-buttons">
+          <a class="nav-btn" href="index.html">💌 Cover</a>
+          <a class="nav-btn" href="2ndpage.html">Thought you should know</a>
+          <a class="nav-btn" href="3rdpage.html">Moments In Love</a>
+          <a class="nav-btn" href="back.html">🎁 Back</a>
+        </div>
+      </header>
+
+      <h1>Happy Anniversary</h1>
+
+      <p>A special card for Dawn — tap below to open your surprise ❤️</p>
+
+      <button class="open-btn" id="open">Open Card</button>
+    </div>
+
+    <div class="footer">© Enduring Holdings LLC — All Rights Reserved</div>
+
+    <script>
+      const c = document.getElementById("cover");
+
+      document.getElementById("open").onclick = () => {
+        c.classList.add("turn");
+        setTimeout(() => (location.href = "2ndpage.html"), 900);
+      };
+    </script>
+  </body>
+</html>

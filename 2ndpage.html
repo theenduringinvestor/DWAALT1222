@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Love in Bloom</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        background: linear-gradient(135deg, #ff2f92, #ff9ad5);
+        color: #fff;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* floating hearts */
+      .heart {
+        position: fixed;
+        font-size: 22px;
+        color: rgba(255, 255, 255, 0.85);
+        opacity: 0;
+        pointer-events: none;
+        animation: float 10s linear infinite;
+        filter: blur(0.6px);
+      }
+
+      .h1 {
+        left: 12%;
+        animation-delay: 0s;
+      }
+      .h2 {
+        left: 30%;
+        animation-delay: 2s;
+      }
+      .h3 {
+        left: 50%;
+        animation-delay: 4s;
+      }
+      .h4 {
+        left: 70%;
+        animation-delay: 1s;
+      }
+      .h5 {
+        left: 85%;
+        animation-delay: 3s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(110vh) scale(0.8);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-20vh) scale(1.2);
+          opacity: 0;
+        }
+      }
+
+      .card {
+        width: 90%;
+        max-width: 650px;
+        padding: 120px 24px 40px;
+        text-align: center;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        position: relative;
+      }
+
+      /* nav bar */
+      .card-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 72px;
+        background: linear-gradient(135deg, #ff2f92, #ff9ad5);
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+        box-shadow: 0 6px 25px rgba(255, 50, 140, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-btn {
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.22);
+        color: #ffffff;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          background 0.15s ease;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      }
+
+      .headline {
+        font-family: "Great Vibes", cursive;
+        font-size: 2.6rem;
+        margin-bottom: 6px;
+      }
+
+      .sub {
+        opacity: 0.9;
+        font-size: 0.95rem;
+        margin-bottom: 18px;
+      }
+
+      /* 🌸 SIDE-BY-SIDE FLIPPING FLOWERS */
+      .flowers-row {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap; /* helps on small screens */
+      }
+
+      .flower-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        perspective: 800px; /* 3D space for flip */
+      }
+
+      .flower-inner {
+        width: 72px;
+        height: 72px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.6s ease;
+        animation: bloom 0.9s forwards ease-out;
+      }
+
+      .flower-face {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        backface-visibility: hidden;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+          0 6px 12px rgba(0, 0, 0, 0.35);
+        animation: glow 3s ease-in-out infinite;
+      }
+
+      .flower-front {
+        /* front stays default */
+      }
+
+      .flower-back {
+        transform: rotateY(180deg);
+        filter: brightness(1.15);
+      }
+
+      .flower-btn.flipped .flower-inner {
+        transform: rotateY(180deg);
+      }
+
+      @keyframes bloom {
+        0% {
+          opacity: 0;
+          transform: scale(0.6);
+        }
+        60% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes glow {
+        0% {
+          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
+        }
+        50% {
+          filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+        }
+        100% {
+          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
+        }
+      }
+
+      .message {
+        margin-top: 12px;
+        font-size: 0.96rem;
+        line-height: 1.6;
+        padding: 0 8px;
+        color: #ffe6f4;
+      }
+
+      .flower-note {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .flower-note span {
+        font-weight: 600;
+        color: #ffeaf8;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 6px;
+        width: 100%;
+        text-align: center;
+        font-size: 0.75rem;
+        opacity: 0.85;
+        font-weight: 600;
+        pointer-events: none;
+      }
+
+      @media (max-width: 480px) {
+        .card {
+          padding: 110px 14px 32px;
+        }
+        .headline {
+          font-size: 2.3rem;
+        }
+        .sub {
+          font-size: 0.9rem;
+        }
+        .message {
+          font-size: 0.9rem;
+        }
+        .flower-note {
+          font-size: 0.86rem;
+        }
+        .flower-inner {
+          width: 64px;
+          height: 64px;
+        }
+        .flower-face {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- floating hearts -->
+    <div class="heart h1">♥</div>
+    <div class="heart h2">♥</div>
+    <div class="heart h3">♥</div>
+    <div class="heart h4">♥</div>
+    <div class="heart h5">♥</div>
+
+    <div class="card">
+      <!-- nav bar -->
+      <header class="card-nav">
+        <div class="nav-buttons">
+          <a class="nav-btn" href="index.html">💌 Cover</a>
+          <a class="nav-btn" href="2ndpage.html">Thought you should know</a>
+          <a class="nav-btn" href="3rdpage.html">Moments In Love</a>
+          <a class="nav-btn" href="back.html">🎀 Back</a>
+        </div>
+      </header>
+
+      <h2 class="headline">Our Love in Bloom</h2>
+
+      <p class="sub">
+        Tap a flower — watch it flip, and read what it means to me.
+      </p>
+
+      <!-- 🌸 SIDE-BY-SIDE FLIPPING FLOWERS -->
+      <div class="flowers-row">
+        <button
+          class="flower-btn"
+          data-message="You make everything softer just by being here."
+        >
+          <div class="flower-inner">
+            <div class="flower-face flower-front">🌸</div>
+            <div class="flower-face flower-back">🌸</div>
+          </div>
+        </button>
+
+        <button
+          class="flower-btn"
+          data-message="I like the version of me that shows up when I’m around you."
+        >
+          <div class="flower-inner">
+            <div class="flower-face flower-front">🌷</div>
+            <div class="flower-face flower-back">🌷</div>
+          </div>
+        </button>
+
+        <button
+          class="flower-btn"
+          data-message="You deserve flowers, patience, and real effort. I’m trying to give you all three."
+        >
+          <div class="flower-inner">
+            <div class="flower-face flower-front">🌹</div>
+            <div class="flower-face flower-back">🌹</div>
+          </div>
+        </button>
+
+        <button
+          class="flower-btn"
+          data-message="Thank you for staying through our ups and downs instead of just dipping."
+        >
+          <div class="flower-inner">
+            <div class="flower-face flower-front">🌺</div>
+            <div class="flower-face flower-back">🌺</div>
+          </div>
+        </button>
+
+        <button
+          class="flower-btn"
+          data-message="No matter how life twists, I keep circling back to you — that’s not by accident."
+        >
+          <div class="flower-inner">
+            <div class="flower-face flower-front">💐</div>
+            <div class="flower-face flower-back">💐</div>
+          </div>
+        </button>
+      </div>
+
+      <p class="flower-note" id="flower-note">
+        <span>Hint:</span> tap any flower above to flip it and reveal a small
+        note from me.
+      </p>
+
+      <p class="message">
+        Some people get flowers once and they fade. These stay right here — a
+        little row of soft reminders, waiting every time you open this card,
+        just to tell you how much you mean to me.
+      </p>
+    </div>
+
+    <div class="footer">© Enduring Holdings LLC — All Rights Reserved</div>
+
+    <script>
+      // Flip the clicked flower and update the note text
+      const flowers = document.querySelectorAll(".flower-btn");
+      const noteBox = document.getElementById("flower-note");
+
+      flowers.forEach((flower) => {
+        flower.addEventListener("click", () => {
+          // only one stays flipped at a time
+          flowers.forEach((f) => f.classList.remove("flipped"));
+          flower.classList.add("flipped");
+
+          const msg = flower.getAttribute("data-message");
+          noteBox.innerHTML = "<span>Note:</span> " + msg;
+        });
+      });
+    </script>
+  </body>
+</html>
