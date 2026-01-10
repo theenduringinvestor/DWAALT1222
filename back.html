@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Back of Card — For Her</title>
 
-    <!-- Same romantic script family as the pink cover -->
     <link
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
       rel="stylesheet"
@@ -22,16 +21,19 @@
         padding: 0;
       }
 
+      html,
+      body {
+        height: 100%;
+        overflow: hidden; /* no scroll */
+      }
+
       body {
         font-family: "Poppins", Arial, sans-serif;
-        /* Barbie-pink romantic background */
         background: linear-gradient(135deg, #ff2f92, #ff9ad5);
         color: #ffffff;
-        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
         position: relative;
       }
 
@@ -44,6 +46,7 @@
         pointer-events: none;
         animation: float 10s linear infinite;
         filter: blur(0.6px);
+        z-index: 0;
       }
 
       .h1 {
@@ -84,16 +87,22 @@
       .card {
         width: 90%;
         max-width: 650px;
-        padding: 120px 28px 80px;
+        max-height: calc(100vh - 92px); /* room for footer */
+        padding: 120px 28px 32px;
         text-align: center;
         border-radius: 18px;
-        /* soft glassy white with pink border */
-        background: rgba(255, 255, 255, 0.92);
-        border: 3px solid rgba(255, 145, 200, 0.95);
+
+        /* ✅ pink glass instead of white */
+        background: rgba(255, 47, 146, 0.18);
+        border: 2px solid rgba(255, 215, 235, 0.5);
         box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35),
-          0 0 0 6px rgba(255, 145, 200, 0.35);
+          0 0 0 6px rgba(255, 145, 200, 0.18);
+
         position: relative;
-        color: #5c1640;
+        color: #fff;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 2;
       }
 
       /* top nav bar */
@@ -105,8 +114,8 @@
         height: 72px;
         background: linear-gradient(
           135deg,
-          rgba(255, 47, 146, 0.8),
-          rgba(255, 154, 213, 0.8)
+          rgba(255, 47, 146, 0.75),
+          rgba(255, 154, 213, 0.75)
         );
         box-shadow: 0 6px 25px rgba(255, 50, 140, 0.55);
         border-top-left-radius: 18px;
@@ -117,7 +126,7 @@
         z-index: 5;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35);
       }
 
       .nav-buttons {
@@ -125,6 +134,7 @@
         gap: 10px;
         flex-wrap: wrap;
         justify-content: center;
+        padding: 0 10px;
       }
 
       .nav-btn {
@@ -142,8 +152,9 @@
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 4px;
-        transition: box-shadow 0.15s ease, background 0.15s ease;
+        gap: 6px;
+        transition: box-shadow 0.15s ease, background 0.15s ease,
+          transform 0.15s ease;
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
         text-transform: uppercase;
@@ -156,11 +167,13 @@
           0 0 20px rgba(255, 255, 255, 0.5),
           0 0 35px rgba(255, 105, 180, 0.4);
         background: rgba(255, 255, 255, 0.35);
+        transform: translateY(-1px);
         animation: none;
       }
 
       @keyframes buttonHeartbeat {
-        0%, 100% {
+        0%,
+        100% {
           transform: scale(1);
         }
         14% {
@@ -178,65 +191,64 @@
       }
 
       .logo-wrap {
-        margin-top: 22px;
+        margin-top: 18px;
         margin-bottom: 10px;
         display: flex;
         justify-content: center;
       }
 
       .logo-img {
-        max-width: 220px; /* tweak for your logo */
+        max-width: 220px;
         height: auto;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
       }
 
       h1 {
         font-family: "Great Vibes", cursive;
-        font-size: 2.6rem;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        color: #b01257;
+        font-size: 2.8rem;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #fff;
+        text-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
       }
 
       .thank-text {
         font-size: 1.05rem;
-        margin-top: 10px;
-        margin-bottom: 18px;
-        opacity: 0.9;
+        margin-top: 6px;
+        margin-bottom: 14px;
+        opacity: 0.95;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.92);
       }
 
       .brand {
-        font-family: "Poppins", sans-serif;
         font-weight: 600;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        margin-top: 8px;
+        margin-top: 6px;
+        color: rgba(255, 255, 255, 0.95);
       }
 
-      .rights-text {
-        margin-top: 14px;
-        font-size: 0.85rem;
-        opacity: 0.8;
-      }
-
+      /* footer */
       .footer {
         position: fixed;
-        bottom: 0;
         left: 0;
-        width: 100%;
+        right: 0;
+        bottom: 10px;
         text-align: center;
         font-size: 0.75rem;
         color: #ffd6eb;
         font-weight: 600;
         letter-spacing: 0.5px;
         z-index: 10;
-        padding: 12px 16px;
+        padding: 10px 14px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 12px;
         flex-wrap: wrap;
-        pointer-events: all;
+        pointer-events: auto;
       }
 
       .footer a {
@@ -244,12 +256,12 @@
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
         transition: opacity 0.2s ease;
       }
 
       .footer a:hover {
-        opacity: 0.8;
+        opacity: 0.85;
       }
 
       .footer svg {
@@ -257,6 +269,22 @@
         height: 18px;
         fill: #ffd6eb;
       }
+
+      @media (max-width: 480px) {
+        .card {
+          padding: 118px 16px 22px;
+          max-height: calc(100vh - 104px);
+        }
+        h1 {
+          font-size: 2.4rem;
+        }
+        .thank-text {
+          font-size: 0.98rem;
+        }
+        .nav-btn {
+          font-size: 0.78rem;
+          padding: 6px 12px;
+        }
       }
     </style>
   </head>
@@ -270,7 +298,6 @@
     <div class="heart h5">♥</div>
 
     <div class="card">
-      <!-- nav links (update filenames if yours are different) -->
       <header class="card-nav">
         <div class="nav-buttons">
           <a class="nav-btn" href="index.html">💌 Cover</a>
@@ -280,9 +307,7 @@
         </div>
       </header>
 
-      <!-- your logo -->
       <div class="logo-wrap">
-        <!-- change src to your real logo filename -->
         <img
           src="enduringholdings.png"
           alt="Enduring Holdings logo"
@@ -292,68 +317,25 @@
 
       <h1>Thank You</h1>
 
+      <!-- ✅ no digital archive wording -->
       <p class="thank-text">
-        Thank you for opening this card and sharing this moment together. This
-        experience was crafted with love, just for the two of you.
+        Thank you for taking a moment to read this. I made it with love — just
+        for you.
       </p>
 
       <div class="brand">Enduring Holdings LLC</div>
-
-      <p class="rights-text">© Enduring Holdings LLC — All Rights Reserved</p>
     </div>
 
-    <div class="footer">
+    <footer class="footer">
       <span>© Enduring Holdings LLC — All Rights Reserved</span>
+
+      <!-- ✅ IG stays in footer -->
       <a
         href="https://www.instagram.com/enduringholdingsllc/"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Follow Enduring Holdings on Instagram"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
-            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-          />
-        </svg>
-        Follow us
-      </a>
-    </div>
-  <!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-</body>
-</html>
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.2
