@@ -513,47 +513,15 @@
           <div class="slideshow" id="show">
             <div class="slide active">
               <img src="DWI1.JPG" alt="Photo 1" />
-              <button
-                class="download-btn"
-                onclick="downloadImage('DWI1.JPG', 'photo-1.jpg')"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-                </svg>
-              </button>
             </div>
             <div class="slide">
               <img src="DWI2.JPG" alt="Photo 2" />
-              <button
-                class="download-btn"
-                onclick="downloadImage('DWI2.JPG', 'photo-2.jpg')"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-                </svg>
-              </button>
             </div>
             <div class="slide">
               <img src="DWI4.jpg" alt="Photo 3" />
-              <button
-                class="download-btn"
-                onclick="downloadImage('DWI4.jpg', 'photo-3.jpg')"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-                </svg>
-              </button>
             </div>
             <div class="slide">
               <img src="DWI5.jpg" alt="Photo 4" />
-              <button
-                class="download-btn"
-                onclick="downloadImage('DWI5.jpg', 'photo-4.jpg')"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-                </svg>
-              </button>
             </div>
 
             <div class="controls">
@@ -636,26 +604,6 @@
       dots.forEach((d) => (d.onclick = () => showSlide(+d.dataset.index)));
 
       setInterval(() => showSlide(current + 1), 7000);
-
-      // Download image function
-      function downloadImage(imageUrl, filename) {
-        fetch(imageUrl)
-          .then((response) => response.blob())
-          .then((blob) => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(a);
-          })
-          .catch((err) => {
-            // Fallback: open in new tab if fetch fails
-            window.open(imageUrl, "_blank");
-          });
-      }
     </script>
   </body>
 </html>
